@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipeProduk extends Model
 {
     use HasFactory;
-    protected $table = 'tipeproduk';
+    protected $table = 'tipeproduks';
 
     public function produks()
     {

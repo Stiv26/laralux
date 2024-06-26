@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up(): void 
     {
-        Schema::create('tipeproduks', function (Blueprint $table) {
+        Schema::create('tipehotels', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->timestamps();
