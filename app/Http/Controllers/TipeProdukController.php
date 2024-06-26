@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
+use App\Models\Produk;
 use App\Models\TipeProduk;
 use Illuminate\Http\Request;
 
@@ -45,7 +47,7 @@ class TipeProdukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       //
     }
 
     /**
@@ -61,6 +63,6 @@ class TipeProdukController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       //
     }
 }

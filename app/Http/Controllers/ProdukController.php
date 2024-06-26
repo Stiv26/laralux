@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotel;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,9 @@ class ProdukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+        $hotel = Hotel::all();
+        return view('produk.edit', ["produk" => $produk, "hotel" => $hotel]);
     }
 
     /**
@@ -61,6 +64,14 @@ class ProdukController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $produk = Produk::find($id);
+            $produk->delete();
+
+            return redirect()->route('produk.index')->with('status', 'Delete Product Successful');
+        } catch (\Throwable $th) {
+
+            return redirect()->route('produk.index')->with('status', $th);
+        }
     }
 }

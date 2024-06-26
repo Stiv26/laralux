@@ -2,4 +2,4 @@
 @section("isi")
 
 @endsection
-@section('judul-halaman', 'Tambah Hotel')
+@section('judul-halaman', 'Ubah Produk')

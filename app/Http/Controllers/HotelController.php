@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
-
+use App\Models\TipeHotel;
 
 class HotelController extends Controller
 {
@@ -46,7 +46,9 @@ class HotelController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $hotel = Hotel::findOrFail($id);
+        $tipe = TipeHotel::all();
+        return view('hotel.edit', ["hotel" => $hotel, "tipe" => $tipe]);
     }
 
     /**
@@ -62,6 +64,18 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $hotel = Hotel::find($id);
+
+        if ($hotel) {
+            foreach ($hotel->produks as $produk) {
+                $produk->delete();
+            }
+    
+            $hotel->delete();
+            return redirect()->route('hotel.index')->with('status', 'Delete Hotel Successful');
+        }
+    
+        return redirect()->route('hotel.index')->with('status', 'Hotel Not Found');
     }
 }

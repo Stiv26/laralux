@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nomortelpon');
             $table->string('email');
             $table->integer('rating');
+            $table->string('gambar');
             $table->unsignedBigInteger('hoteltipe_id');
             $table->foreign('hoteltipe_id')->references('id')->on('tipehotels');
             $table->timestamps();
