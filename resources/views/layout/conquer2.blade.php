@@ -483,27 +483,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 				</li>
 				<li>
-					<a href="{{ url ('type')}}">
+					<a href="{{ url ('produk')}}">
 					<i class="icon-bell"></i>
-					<span class="title">Daftar Tipe</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url ('customer')}}">
-					<i class="icon-user"></i>
-					<span class="title">Daftar Pelanggan</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ url ('transaction')}}">
-					<i class="icon-card"></i>
-					<span class="title">Daftar Transaksi</span>
-					</a>
-				</li>
-				<li class="last ">
-					<a href="{{ url ('rekap-produk')}}">
-					<i class="icon-bar-chart"></i>
-					<span class="title">Rekap Produk</span>
+					<span class="title">Daftar Produk</span>
 					</a>
 				</li>
 			</ul>
