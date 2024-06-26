@@ -8,14 +8,17 @@
             <th>Tipe Produk</th>
             <th>Harga</th>
         </tr>
-    </thead>    
+    </thead>
+    <tbody>
     @foreach ($data as $item)
-    <tr>
-        <td>{{ $item -> nama }}</td>
-        <td>{{ $item -> hotel -> nama }}</td>
-        <td>{{ $item -> tipeProduk -> nama }}</td>
-        <td>{{ $item -> harga }}</td>
-    </tr>
+        <tr>
+            <td>{{ $item -> nama }}</td>
+            <td>{{ $item -> hotel -> nama }}</td>
+            <td>{{ $item -> tipeProduk -> nama }}</td>
+            <td>{{ $item -> harga }}</td> 
+        </tr>
+    @endforeach
+    </tbody>
 </table>    
 @endsection
 @section('judul-halaman', 'Daftar Produk')

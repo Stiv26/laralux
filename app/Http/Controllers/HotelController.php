@@ -9,9 +9,9 @@ use App\Models\Hotel;
 class HotelController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. 
      */
-    public function index()
+    public function index() 
     {
         $hotel = Hotel::all();
         return view('hotel.index', ['data' => $hotel]);

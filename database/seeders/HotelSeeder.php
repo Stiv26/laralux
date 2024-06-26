@@ -17,7 +17,7 @@ class HotelSeeder extends Seeder
             [
                 'nama' => 'Hotel A',
                 'alamat' => 'Address 1',
-                'nomortelpon' => '123456789',
+                'nomortelpon' => '084365273812',
                 'email' => 'hotelA@example.com',
                 'rating' => 5,
                 'hoteltipe_id' => 1,
@@ -27,7 +27,7 @@ class HotelSeeder extends Seeder
             [
                 'nama' => 'Hotel B',
                 'alamat' => 'Address 2',
-                'nomortelpon' => '987654321',
+                'nomortelpon' => '081267343134',
                 'email' => 'hotelB@example.com',
                 'rating' => 4,
                 'hoteltipe_id' => 2,

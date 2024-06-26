@@ -21,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 
 // routes/web.php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HotelController::class, 'index']);
+Route::get('/produk', [ProdukController::class, 'index']);
 
 Route::resource('hotel', HotelController::class);
 Route::resource('produk', ProdukController::class);
