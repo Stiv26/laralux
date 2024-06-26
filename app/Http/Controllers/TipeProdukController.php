@@ -23,7 +23,7 @@ class TipeProdukController extends Controller
      */
     public function create()
     {
-        return view('tipeproduk.formcreate');
+        return view('tipeproduk.create');
     }
 
     /**

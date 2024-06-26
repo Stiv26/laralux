@@ -19,6 +19,16 @@
             placeholder="Enter City">
     </div>
     <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" value="{{ $hotel->email }}" type="text" class="form-control" id="email"
+            placeholder="Enter Email">
+    </div>
+    <div class="form-group">
+        <label for="rating">Rating</label>
+        <input name="rating" type="text" value="{{ $hotel->rating }}" class="form-control" id="rating"
+            placeholder="Enter Rating">
+    </div>
+    <div class="form-group">
         <label for="gambar">Gambar</label>
         <input name="gambar" type="text" value="{{ $hotel->gambar }}" class="form-control" id="gambar"
             placeholder="Masukan URL gambar">
@@ -33,7 +43,7 @@
             @endforeach
         </select>        
     </div>
-    <button type="submit" class="btn btn-primary">Ubah</button>
+    <br><button type="submit" class="btn btn-primary">Ubah</button>
 </form>
 @endsection
 @section('judul-halaman', 'Ubah Hotel')

@@ -36,6 +36,17 @@ class HotelSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'nama' => 'Hotel C',
+                'alamat' => 'Address C',
+                'nomortelpon' => '089026382904',
+                'email' => 'hotelC@example.com',
+                'rating' => 2,
+                'gambar' => 'https://www.saniharto.com/assets/news/jenis_jenis_hotel_Klasifikasinya.jpg',
+                'hoteltipe_id' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

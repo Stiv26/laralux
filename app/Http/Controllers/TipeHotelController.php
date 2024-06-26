@@ -21,7 +21,7 @@ class TipeHotelController extends Controller
      */
     public function create()
     {
-        return view('tipehotel.formcreate');
+        return view('tipehotel.create');
     }
 
     /**

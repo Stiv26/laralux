@@ -22,7 +22,8 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('hotel.formcreate');
+        $data = TipeHotel::all();
+        return view('hotel.create', ["tipe" => $data]);
     }
 
     /**
@@ -30,8 +31,30 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'nomortelpon' => 'required',
+            'email' => 'required',
+            'rating' => 'required',
+            'gambar' => 'required',
+            'tipehotel' => 'required'
+        ]);
+    
+        $newHotel = new Hotel;
+        $newHotel->nama = $request->nama;
+        $newHotel->alamat = $request->alamat;
+        $newHotel->nomortelpon = $request->nomortelpon;
+        $newHotel->email = $request->email;
+        $newHotel->rating = $request->rating;
+        $newHotel->gambar = $request->gambar;
+        $newHotel->hoteltipe_id = $request->tipehotel;
+    
+        $newHotel->save();
+    
+        return redirect()->route('hotel.index')->with('status', 'Hotel Successfully Created');
     }
+    
 
     /**
      * Display the specified resource.
@@ -60,6 +83,8 @@ class HotelController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'nomortelpon' => 'required',
+            'email' => 'required',
+            'rating' => 'required',
             'gambar' => 'required',
             'tipehotel' => 'required'
         ]);
@@ -68,11 +93,12 @@ class HotelController extends Controller
         $editHotel->nama = $request->nama;
         $editHotel->alamat = $request->alamat;
         $editHotel->nomortelpon = $request->nomortelpon;
+        $editHotel->email = $request->email;
+        $editHotel->rating = $request->rating;
         $editHotel->gambar = $request->gambar;
         $editHotel->hoteltipe_id = $request->tipehotel;
         
         $editHotel->save();
-    
         return redirect()->route('hotel.index')->with('status', 'Hotel Successfully Updated');
     }
     
