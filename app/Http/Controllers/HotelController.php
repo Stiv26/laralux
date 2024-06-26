@@ -56,23 +56,26 @@ class HotelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(['nama' => 'required']);
-        $request->validate(['alamat' => 'required']);
-        $request->validate(['nomortelpon' => 'required']);
-        $request->validate(['gambar' => 'required']);
-        $request->validate(['tipehotel' => 'required']);
-
-        $editHotel = Hotel::find($id);
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'nomortelpon' => 'required',
+            'gambar' => 'required',
+            'tipehotel' => 'required'
+        ]);
+    
+        $editHotel = Hotel::findOrFail($id);
         $editHotel->nama = $request->nama;
         $editHotel->alamat = $request->alamat;
         $editHotel->nomortelpon = $request->nomortelpon;
         $editHotel->gambar = $request->gambar;
-        $editHotel->tipehotel = $request->tipehotel;
+        $editHotel->hoteltipe_id = $request->tipehotel;
         
         $editHotel->save();
-
+    
         return redirect()->route('hotel.index')->with('status', 'Hotel Successfully Updated');
     }
+    
 
     /**
      * Remove the specified resource from storage.
