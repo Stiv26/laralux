@@ -440,13 +440,6 @@ License: You must have a valid license purchased only from themeforest(the above
 					</li>
 					<li class="divider">
 					</li>
-					<li>
-  						<form action="{{route('logout')}}" method="post">
-    						@csrf
-    						<i class="fa fa-key"></i>
-    						<input type="submit" value="logout" class='btn btn-danger'/>
-  						</form>
-					</li>
 				</ul>
 			</li>
 			<!-- END USER LOGIN DROPDOWN -->
