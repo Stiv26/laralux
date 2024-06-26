@@ -24,3 +24,4 @@ Route::get('/', [HotelController::class, 'index']);
 
 Route::resource('hotel', HotelController::class);
 Route::resource('produk', ProdukController::class);
+

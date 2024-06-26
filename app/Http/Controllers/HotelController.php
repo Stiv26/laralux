@@ -56,7 +56,22 @@ class HotelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate(['nama' => 'required']);
+        $request->validate(['alamat' => 'required']);
+        $request->validate(['nomortelpon' => 'required']);
+        $request->validate(['gambar' => 'required']);
+        $request->validate(['tipehotel' => 'required']);
+
+        $editHotel = Hotel::find($id);
+        $editHotel->nama = $request->nama;
+        $editHotel->alamat = $request->alamat;
+        $editHotel->nomortelpon = $request->nomortelpon;
+        $editHotel->gambar = $request->gambar;
+        $editHotel->tipehotel = $request->tipehotel;
+        
+        $editHotel->save();
+
+        return redirect()->route('hotel.index')->with('status', 'Hotel Successfully Updated');
     }
 
     /**
@@ -64,7 +79,6 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-
         $hotel = Hotel::find($id);
 
         if ($hotel) {
