@@ -30,7 +30,7 @@
     <div class="form-group">
         <label for="gambar">Gambar</label>
         <input name="gambar" type="text" class="form-control" id="gambar"
-            placeholder="Masukan URL gambar">
+            placeholder="Masukan URL gambar"> 
     </div>
     <div class="form-group">
         <label for="tipehotel">Tipe Hotel</label>

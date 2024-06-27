@@ -147,8 +147,20 @@ License: You must have a valid license purchased only from themeforest(the above
 				</li>
 				<li>
 					<a href="{{ url ('produk')}}">
-					<i class="icon-bell"></i>
-					<span class="title">Daftar Produk</span>
+					<i class="icon-list"></i>
+					<span class="title">Produk</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ url ('transaksi')}}">
+					<i class="icon-folder"></i>
+					<span class="title">Transaksi</span>
+					</a>
+				</li>
+				<li>
+					<a href="{{ url ('user')}}">
+					<i class="icon-user"></i>
+					<span class="title">User</span>
 					</a>
 				</li>
 			</ul>
@@ -253,7 +265,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<ul class="page-breadcrumb">
 					<li>
 						<i class="fa fa-home"></i>
-						<a href="index.html">Home</a>
+						<a href="#">Home</a>
 						<i class="fa fa-angle-right"></i>
 					</li>
 					<li>
