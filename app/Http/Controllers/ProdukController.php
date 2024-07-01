@@ -22,7 +22,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('produk.create');
+
+        $data = Produk::all();
+        return view('produk.create',["tipe" => $data]);
     }
 
     /**
@@ -30,7 +32,22 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'hotel_id' => 'required',
+            'prod_tipe' => 'required',
+            'harga' => 'required'
+        ]);
+    
+        $newproduk = new Produk;
+        $newproduk->nama = $request->nama;
+        $newproduk->hotel_id = $request->hotel_id;
+        $newproduk->prod_tipe = $request->prod_tipe;
+        $newproduk->harga = $request->harga;
+        
+        $newproduk->save();
+
+        return redirect()->route('produk.index')->with('status', 'Produk Successfully Created');
     }
 
     /**
@@ -38,7 +55,7 @@ class ProdukController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +73,22 @@ class ProdukController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'hotel_id' => 'required',
+            'prod_tipe' => 'required',
+            'harga' => 'required'
+        ]);
+    
+        $editproduk = Produk::findOrFail($id);
+        $editproduk->nama = $request->nama;
+        $editproduk->hotel_id = $request->hotel_id;
+        $editproduk->prod_tipe = $request->prod_tipe;
+        $editproduk->harga = $request->harga;
+
+        $editproduk->save();
+
+        return redirect()->route('produk.index')->with('status', 'Produk Successfully Updated');
     }
 
     /**

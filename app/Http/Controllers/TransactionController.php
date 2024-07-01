@@ -1,19 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use app\Models\User;
 
-use App\Models\TipeHotel;
 use Illuminate\Http\Request;
 
-class TipeHotelController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tipehotel = TipeHotel::all();
-        return view('tipehotel.index', ['data' => $tipehotel]);
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class TipeHotelController extends Controller
      */
     public function create()
     {
-        return view('tipehotel.create');
+        //
     }
 
     /**
@@ -29,16 +28,7 @@ class TipeHotelController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required'
-        ]);
-    
-        $newtipemodel = new TipeHotel;
-        $newtipemodel->nama = $request->nama;
-        
-        $newtipemodel->save();
-
-        return redirect()->route('tipemodel.index')->with('status', 'Tipe Hotel Successfully Created');
+        //
     }
 
     /**
@@ -71,5 +61,8 @@ class TipeHotelController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function addmemberpoints(string $userid, string $produkid){
+        $user = User::find($userid); //tambahin class user
     }
 }
