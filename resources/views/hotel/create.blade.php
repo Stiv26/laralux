@@ -23,7 +23,7 @@
             placeholder="Masukan email">
     </div>
     <div class="form-group">
-        <label for="rating">Rating</label>
+        <label for="rating">Rating</label> 
         <input name="rating" type="text" class="form-control" id="rating"
             placeholder="Masukan rating">
     </div>
@@ -39,7 +39,7 @@
             <option value="{{ $item->id }}">
                 {{ $item->nama }}
             </option>
-            @endforeach
+            @endforeach 
         </select>
           
     </div>

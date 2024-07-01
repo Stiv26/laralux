@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->datetimes('waktu_transaksi');
+            $table->datetime('waktu_transaksi');
             $table->timestamps();
             $table->integer('total');
             $table->integer('total_tanpa_pajak');
