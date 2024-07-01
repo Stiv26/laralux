@@ -1,4 +1,4 @@
-@extends("layout.conquer2")
+    @extends("layout.conquer2")
 @section("isi")
 <td><a class="btn btn-info" href="{{route('produk.create')}}" data-toggle="modal">+ Tambah Produk Baru</a></td><br><br>
 <table class = 'table'>

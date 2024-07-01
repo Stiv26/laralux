@@ -81,18 +81,19 @@ License: You must have a valid license purchased only from themeforest(the above
 			<li class="dropdown user">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 				<img alt="" src="assets/img/avatar3_small.jpg"/>
-				<span class="username username-hide-on-mobile">USER </span>
+				<span class="username username-hide-on-mobile"> {{ Auth::user()->name }}</span>
 				<i class="fa fa-angle-down"></i>
 				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<form action="{{route('logout')}}" method="post">
-							@csrf
-							<i class="fa fa-key"></i>
-							<input type="submit" value="logout Account" class='btn btn-danger'/>
-						</form>
-					</li>
-				</ul>
+					<ul class="dropdown-menu">
+						<li>
+							<form action="{{route('logout')}}" method="post">
+								@csrf
+								<i class="fa fa-key"></i>
+								<input type="submit" value="logout Account" class='btn btn-danger'/>
+							</form>
+						</li>
+					</ul>
+				</a>
 			</li>
 			<!-- END USER LOGIN DROPDOWN -->
 		</ul>

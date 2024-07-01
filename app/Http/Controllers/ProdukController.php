@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hotel;
 use App\Models\Produk;
+use App\Models\TipeProduk;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -22,9 +23,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-
-        $data = Produk::all();
-        return view('produk.create',["tipe" => $data]);
+        $tipe = TipeProduk::all();
+        $hotel = Hotel::all();
+        return view('produk.create', ["tipe" => $tipe, "hotel" => $hotel]);
     }
 
     /**
@@ -34,21 +35,22 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'hotel_id' => 'required',
-            'prod_tipe' => 'required',
+            'hotel' => 'required', // Update ini sesuai dengan nama field pada form
+            'tipeproduk' => 'required', // Update ini sesuai dengan nama field pada form
             'harga' => 'required'
         ]);
     
         $newproduk = new Produk;
         $newproduk->nama = $request->nama;
-        $newproduk->hotel_id = $request->hotel_id;
-        $newproduk->prod_tipe = $request->prod_tipe;
+        $newproduk->hotel_id = $request->hotel; // Update ini sesuai dengan nama field pada form
+        $newproduk->prodtipe_id = $request->tipeproduk; // Update ini sesuai dengan nama field pada form
         $newproduk->harga = $request->harga;
-        
+    
         $newproduk->save();
-
+    
         return redirect()->route('produk.index')->with('status', 'Produk Successfully Created');
     }
+    
 
     /**
      * Display the specified resource.
@@ -65,7 +67,8 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
         $hotel = Hotel::all();
-        return view('produk.edit', ["produk" => $produk, "hotel" => $hotel]);
+        $tipe = TipeProduk::all();
+        return view('produk.edit', ["produk" => $produk, "hotel" => $hotel, "tipe" => $tipe]);
     }
 
     /**
@@ -75,15 +78,15 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'hotel_id' => 'required',
-            'prod_tipe' => 'required',
+            'hotel' => 'required',
+            'tipeproduk' => 'required',
             'harga' => 'required'
         ]);
-    
+
         $editproduk = Produk::findOrFail($id);
         $editproduk->nama = $request->nama;
-        $editproduk->hotel_id = $request->hotel_id;
-        $editproduk->prod_tipe = $request->prod_tipe;
+        $editproduk->hotel_id = $request->hotel;
+        $editproduk->prodtipe_id = $request->tipeproduk; // Sesuaikan dengan nama kolom di database
         $editproduk->harga = $request->harga;
 
         $editproduk->save();
