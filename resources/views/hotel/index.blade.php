@@ -1,6 +1,12 @@
 @extends("layout.conquer2")
 @section("isi")
-<td><a class="btn btn-info" href="{{ route('hotel.create') }}" data-toggle="modal">+ Tambah Hotel Baru</a></td><br><br>
+
+<td>
+@can('owner-permission',Auth::user())
+<a class="btn btn-info" href="{{ route('hotel.create') }}" data-toggle="modal">+ Tambah Hotel Baru</a>
+</td><br><br>
+@endcan
+
 <table class = 'table'>
     <thead>
         <tr>

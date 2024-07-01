@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Default route
-Route::get('/', [HotelController::class, 'index']);
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 // Authentication routes
 Auth::routes();
