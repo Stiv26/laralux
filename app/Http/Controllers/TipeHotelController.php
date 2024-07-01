@@ -29,7 +29,16 @@ class TipeHotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required'
+        ]);
+    
+        $newtipemodel = new TipeHotel;
+        $newtipemodel->nama = $request->nama;
+        
+        $newtipemodel->save();
+
+        return redirect()->route('tipemodel.index')->with('status', 'Tipe Hotel Successfully Created');
     }
 
     /**

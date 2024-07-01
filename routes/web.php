@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TipeHotelController;
 use App\Http\Controllers\TipeProdukController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\TipeHotel;
 use Database\Seeders\TipeHotelSeeder;
 use Illuminate\Support\Facades\Route;
