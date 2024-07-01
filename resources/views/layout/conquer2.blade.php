@@ -86,22 +86,11 @@ License: You must have a valid license purchased only from themeforest(the above
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a>
-					</li>
-					<li>
-						<a href="page_calendar.html"><i class="fa fa-calendar"></i> My Calendar</a>
-					</li>
-					<li>
-						<a href="page_inbox.html"><i class="fa fa-envelope"></i> My Inbox <span class="badge badge-danger">
-						3 </span>
-						</a>
-					</li>
-					<li>
-						<a href="#"><i class="fa fa-tasks"></i> My Tasks <span class="badge badge-success">
-						7 </span>
-						</a>
-					</li>
-					<li class="divider">
+						<form action="{{route('logout')}}" method="post">
+							@csrf
+							<i class="fa fa-key"></i>
+							<input type="submit" value="logout Account" class='btn btn-danger'/>
+						</form>
 					</li>
 				</ul>
 			</li>

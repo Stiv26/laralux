@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Produk::all();
         return view('frontend.index', compact('products')); 
     }
 
@@ -50,7 +51,7 @@ class FrontEndController extends Controller
     {
         $id = $request->id;
         $cart = session()->get('cart');
-        $product = Product::find($cart[$id]['id']);
+        $product = Produk::find($cart[$id]['id']);
         if(isset($cart[$id]))
         {
             $jumlahAwal = $cart[$id]['quantity'];

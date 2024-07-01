@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Transaksi extends Model
 {
@@ -22,7 +24,7 @@ class Transaksi extends Model
 
     public function produks() : BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'produk_transaksi', 'transaksi_id', 'produk_id')
+        return $this->belongsToMany(Produk::class, 'produk_transaksi', 'transaksi_id', 'produk_id')
         ->withPivot('jumlah', 'subtotal');
     }
 }
