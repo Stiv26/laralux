@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use app\Models\User;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class TransaksiController extends Controller
 {
@@ -69,27 +70,42 @@ class TransaksiController extends Controller
 
     public function checkout()
     {
+        DB::transaction(function () {
         $cart = session('cart');
         $user = Auth::user();
         $t = new Transaction();
         $t->user_id = $user->id;
-        $t->customer_id = 1;
         $t->tanggal_transaksi = Carbon::now()->toDateTimeString();
         $t->save();
-
-        $t->insertProducts($cart,$user);
+        $total = $t->insertProducts($cart,$user);
+        $t->total_tanpa_pajak = $total;
+        $t->total = $total + (($total / 100) * 11);
+        $t->save();
+        $user->save();
         session()->forget('cart');
-        return redirect()->route('laralux.index')->with('status','Checkout berhasil');
+        return redirect()->route('laralux.index')->with('status','Checkout berhasil, total adalah Rp.' + $total);
+        });
     }
+
 
     public function insertProducts($cart,$user)
     {
         $total = 0;
         foreach ($cart as $c) 
         {
-            $subtotal = $c['quantity']* $c['price'];
+            if($c->name == "deluxe" || $c->name == "superior" || $c->name == "suite"){
+                $user->memberpoint += 5;
+            }
+            $subtotal = $c['quantity'] * $c['price'];
             $total += $subtotal;
+            if($total >= 300000){
+                $modtotal = $total;
+                while ($modtotal >= 300000);
+                $user->memberpoint += 1;
+            }
             $this->products()->attach($c['id'],['quantity' => $c['quantity'], 'subtotal' => $subtotal]);
         }
+        
+        return $total;
     }
 }
