@@ -109,4 +109,99 @@ class ProdukController extends Controller
             return redirect()->route('produk.index')->with('status', $th);
         }
     }
+
+    public function cart()
+    {
+        return view('produk.cart');
+    }
+
+    public function addToCart($id)
+    {
+        $produk = Produk::find($id);
+        $cart = session()->get('cart');
+        
+        if (!isset($cart[$id])) {
+            $cart[$id] = [
+                'id' => $id,
+                'nama' => $produk->nama,
+                'jumlah' => 1,
+                'harga' => $produk->harga,
+                'gambar' => $produk->gambar,
+            ];
+        } else {
+            $cart[$id]['jumlah']++;
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->back()->with("status", "Produk Telah ditambahkan ke Cart");
+    }
+
+    public function removeFromCart($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart')->with("status", "Produk telah dihapus dari keranjang");
+    }
+
+    public function addQuantity(Request $request)
+    {
+        $id = $request->id;
+        $cart = session()->get('cart', []);
+        $product = Produk::find($id);
+
+        if (isset($cart[$id])) {
+            if ($cart[$id]['jumlah'] < $product->available_room) {
+                $cart[$id]['jumlah']++;
+                session()->put('cart', $cart);
+                return redirect()->route('cart')->with('status', 'Jumlah produk ditambah');
+            } else {
+                return redirect()->back()->with('error', 'Jumlah pemesanan melebihi total kamar yang tersedia');
+            }
+        }
+
+        return redirect()->route('cart')->with('status', 'Produk tidak ditemukan di keranjang');
+    }
+
+    public function reduceQuantity(Request $request)
+    {
+        $id = $request->id;
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id]) && $cart[$id]['jumlah'] > 1) {
+            $cart[$id]['jumlah']--;
+            session()->put('cart', $cart);
+            return redirect()->route('cart')->with('status', 'Jumlah produk dikurangi');
+        }
+
+        return redirect()->route('cart')->with('status', 'Produk tidak ditemukan di keranjang atau jumlah sudah 1');
+    }
+
+    public function checkout()
+    {
+        $cart = session()->get('cart', []);
+
+        // Calculate total amount
+        $totalAmount = 0;
+        foreach ($cart as $details) {
+            $totalAmount += $details['harga'] * $details['jumlah'];
+        }
+    
+        return view('produk.checkout', compact('cart', 'totalAmount'));
+    }
+
+    // Method to handle order placement
+    public function placeOrder()
+    {
+        $cart = session()->get('cart', []);
+        
+        session()->forget('cart');
+        
+        return redirect()->route('produk.index')->with('status', 'Order placed successfully!');
+    }
+
 }

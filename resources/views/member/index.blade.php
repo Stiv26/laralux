@@ -1,6 +1,5 @@
 @extends('layout.conquer2')
 @section('isi')
-
     <td>
         @can('owner-permission', Auth::user())
             <a class="btn btn-info" href="{{ route('member.create') }}" data-toggle="modal">+ Tambah Member Baru</a>
@@ -20,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $item)
+            @foreach ($data as $item)
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
@@ -31,7 +30,7 @@
                             <form method="POST" action="{{ route('member.destroy', $item->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="hapus" class="btn btn-danger"
+                                <input type="submit" value="Hapus" class="btn btn-danger"
                                     onclick="return confirm('Are you sure you want to delete member')">
                             </form>
                         </td>

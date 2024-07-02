@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <h3>LARALUX ADMIN</h3>
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="" />
                 </a>
             </div>
             <form class="search-form search-form-header" role="form" action="index.html">
@@ -79,10 +79,12 @@ License: You must have a valid license purchased only from themeforest(the above
                 <img src="{{ asset('assets/img/menu-toggler.png') }}" alt="" />
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
+
             <!-- BEGIN TOP NAVIGATION MENU -->
             <ul class="nav navbar-nav pull-right">
+                <!-- END TODO DROPDOWN -->
                 <li class="devider">
-                    &nbsp;
+                     &nbsp;
                 </li>
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown user">
@@ -151,14 +153,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     </li>
                     <li>
                         <a href="{{ url('transaksi') }}">
-                            <i class="icon-folder"></i>
+                            <i class="fa-shopping-cart"></i>
                             <span class="title">Transaksi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('riwayat') }}">
-                            <i class="icon-folder"></i>
-                            <span class="title">Riwayat</span>
                         </a>
                     </li>
                     <li>
@@ -168,23 +164,32 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('laporansatu') }}">
-                            <i class="icon-user"></i>
-                            <span class="title">Laporan Pertama</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('laporandua') }}">
-                            <i class="icon-user"></i>
-                            <span class="title">Laporan Kedua</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('laporantiga') }}">
-                            <i class="icon-user"></i>
-                            <span class="title">Laporan Ketiga</span>
-                        </a>
-                    </li>
+						<a href="javascript:;">
+							<i class="icon-folder"></i>
+							<span class="title">Laporan</span>
+							<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+                                <a href="{{ url('laporansatu') }}">
+                                    <i class="icon"></i>
+                                    <span class="title">Laporan Pertama</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('laporandua') }}">
+                                    <i class="icon"></i>
+                                    <span class="title">Laporan Kedua</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('laporantiga') }}">
+                                    <i class="icon"></i>
+                                    <span class="title">Laporan Ketiga</span>
+                                </a>
+                            </li>
+						</ul>
+					</li>
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>

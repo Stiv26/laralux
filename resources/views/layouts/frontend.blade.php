@@ -105,7 +105,6 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
-                            @can('pembeli-permission',Auth::user())
                             <a href="wishlist.html" class="btn wishlist">
                                 <i class="fa fa-heart"></i>
                                 <span>(0)</span>
@@ -120,7 +119,6 @@
                                     @endif
                                 </span>
                             </a>
-                            @endcan
                         </div>
                     </div>
                 </div>

@@ -23,27 +23,27 @@
                         <tr>
                             <td>
                                 <div class="img">
-                                    @if ($item['photo'] == NULL)
+                                    @if ($item['gambar'] == NULL)
                                     <a href="#"><img src="{{asset('images/blank.jpg') }}" alt="Image"></a>
                                     @else
                                     <a href="#"><img src="{{asset('images/'.$item['photo']) }}" alt="Image"></a>
                                     @endif
-                                    <p>{{$item['name']}}</p>
+                                    <p>{{$item['nama']}}</p>
                                 </div>
                             </td> 
-                                <td>{{'IDR '.$item['price']}}</td>
+                                <td>{{'IDR '.$item['harga']}}</td>
                             <td>
                                 <div class="qty">
                                     <button onclick="redQty({{$item['id']}})" class="btn-minus"><i class="fa fa-minus"></i></button>
-                                    <input type="text" value="{{ $item['quantity'] }}">
+                                    <input type="text" value="{{ $item['jumlah'] }}">
                                     <button onclick="addQty({{$item['id']}})" class="btn-plus"><i class="fa fa-plus"></i></button>
                                 </div>
                             </td>
-                            <td>{{ 'IDR '.$item['quantity']* $item['price'] }}</td>
+                            <td>{{ 'IDR '.$item['jumlah']* $item['harga'] }}</td>
                             <td><a class="btn btn-danger" href="{{route('delFromCart',$item['id'])}}"><i class="fa fa-trash"></i></a></td>
                         </tr>
                         @php
-                            $total+= $item['quantity']* $item['price'];
+                            $total+= $item['jumlah']* $item['harga'];
                         @endphp
                         @endforeach    
                     @else

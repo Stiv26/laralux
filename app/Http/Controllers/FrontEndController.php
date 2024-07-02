@@ -14,7 +14,7 @@ class FrontEndController extends Controller
         $produk = Produk::all();
         return view('frontend.index', compact('produk')); 
     }
-
+ 
     public function show($id)
     {
         $produk = Produk::find($id);
@@ -58,7 +58,7 @@ class FrontEndController extends Controller
             $jumlahAwal = $cart[$id]['quantity'];
             $jumlahPesan = $jumlahAwal+1;
             if($jumlahPesan < $product->available_room)
-            {
+            { 
                 $cart[$id]['quantity']++;
             }
             else{
