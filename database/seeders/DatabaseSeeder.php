@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             HotelSeeder::class,
             ProdukSeeder::class,
             UserSeeder::class,
+            TransaksiSeeder::class,
+            ProdukTransaksiSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

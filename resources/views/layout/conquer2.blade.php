@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="logo" />
+                    <img src="images/laralux2.png" alt="logo" />
                 </a>
             </div>
             <form class="search-form search-form-header" role="form" action="index.html">

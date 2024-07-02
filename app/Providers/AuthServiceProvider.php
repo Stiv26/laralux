@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('staff-permission', function ($user) {
             return ($user->role == 'staff');
         });
-        Gate::define('staff-permission', function ($user) {
+        Gate::define('pembeli-permission', function ($user) {
             return ($user->role == 'pembeli');
         });
         //

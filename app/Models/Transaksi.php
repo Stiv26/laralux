@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Transaksi extends Model
 {
     use HasFactory;
-    protected $table = 'transaksis';
+    protected $table = 'transaksi';
 
     public function user(): BelongsTo
     {
@@ -25,6 +25,6 @@ class Transaksi extends Model
     public function produks() : BelongsToMany
     {
         return $this->belongsToMany(Produk::class, 'produk_transaksi', 'transaksi_id', 'produk_id')
-        ->withPivot('jumlah', 'subtotal');
+        ->withPivot('quantity', 'subtotal');
     }
 }

@@ -23,7 +23,7 @@
                 <a href ="{{ url('hotel') }}" class ="btn btn-info">Welcome</a>
                 @endcan
                 @can('pembeli-permission',Auth::user())
-                <a href ="{{ url('frontend') }}" class ="btn btn-info">Welcome</a>
+                <a href ="{{ url('hotel') }}" class ="btn btn-info">Welcome</a>
                 @endcan
             </div>
         </div>

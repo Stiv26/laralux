@@ -21,4 +21,9 @@ class Produk extends Model
     {
         return $this->belongsTo(TipeProduk::class, 'prodtipe_id');
     }
+
+    public function transaksis(): BelongsToMany
+    {
+        return $this->belongsToMany(Transaksi::class, 'produk_transaksi', 'produk_id', 'transaksi_id');
+    }
 }

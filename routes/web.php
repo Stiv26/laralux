@@ -4,6 +4,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('hotel', HotelController::class);
     Route::resource('produk', ProdukController::class);
     Route::resource('transaksi', TransaksiController::class);
+    Route::get('member', [UserController::class, 'members']);
 
     // Cart routes
     Route::get('laralux/user/cart', function () {

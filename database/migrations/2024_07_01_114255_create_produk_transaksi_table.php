@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('produk_id');
             $table->unsignedBigInteger('transaksi_id');
             $table->integer('quantity'); 
-            $table->decimal('subtotal');
+            $table->decimal('subtotal', 11, 2);
             $table->timestamps();
 
 
