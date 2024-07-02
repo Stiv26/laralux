@@ -38,7 +38,9 @@
                             </div>
                             <div class="product-price">
                                 <h3><span>IDR</span>{{$p->harga}}</h3>
+                                @can('pembeli-permission',Auth::user())
                                 <a class="btn" href="{{route('addCart',$p->id)}}"><i class="fa fa-shopping-cart"></i>Tambahkan ke Keranjang</a>
+                                @endcan
                             </div>
                         </div>
                     </div>

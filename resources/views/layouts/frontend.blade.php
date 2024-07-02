@@ -51,31 +51,35 @@
                     </button>
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="product-list.html" class="nav-item nav-link">Products</a>
-                            <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                            <a href="cart.html" class="nav-item nav-link">Cart</a>
-                            <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                            <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">More Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                                    <a href="login.html" class="dropdown-item active">Login & Register</a>
-                                    <a href="contact.html" class="dropdown-item">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
+                        @auth
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hello, {{ Auth::user()->name }}</a>
                                 <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item">Login</a>
-                                    <a href="#" class="dropdown-item">Register</a>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <input type="submit" value="Logout This Account" class='btn btn-info' />
+                                        </form>
+                                    </li>
                                 </div>
                             </div>
                         </div>
+                        @else
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hello, visitor</a>
+                                <div class="dropdown-menu">
+                                    <li>
+                                        <form action="{{ url('/login') }}" method="get">
+                                            @csrf
+                                            <input type="submit" value="Login" class='btn btn-info' />
+                                        </form>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        @endauth
                     </div>
                 </nav>
             </div>
@@ -89,7 +93,7 @@
                     <div class="col-md-3">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="{{ asset('frontend/img/logo.png') }}" alt="Logo">
+                                <h2>LARALUX</h2>
                             </a>
                         </div>
                     </div>
@@ -101,6 +105,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
+                            @can('pembeli-permission',Auth::user())
                             <a href="wishlist.html" class="btn wishlist">
                                 <i class="fa fa-heart"></i>
                                 <span>(0)</span>
@@ -115,24 +120,14 @@
                                     @endif
                                 </span>
                             </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Bottom Bar End --> 
-        
-        <!-- Breadcrumb Start -->
-        <div class="breadcrumb-wrap">
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active">Login & Register</li>
-                </ul>
-            </div>
-        </div>
-        <!-- Breadcrumb End -->
+
         @if (session('status'))
         <div class="alert alert-success">
             <p>{{session('status')}}</p>

@@ -68,7 +68,8 @@
                     <div class="cart-summary">
                         <div class="cart-content">
                             <h1>Cart Summary</h1>                          
-                            <h2>Grand Total<span>{{'IDR '.$total}}</span></h2>
+                            <h2>Grand Total</h2>
+                            <h2>{{'IDR '.$total}}</h2>
                         </div>
                         <div class="cart-btn">
                             <a class="btn btn-xs" href="{{route('laralux.index')}}">Continue Shopping</button>

@@ -11,14 +11,14 @@ class FrontEndController extends Controller
 {
     public function index()
     {
-        $products = Produk::all();
-        return view('frontend.index', compact('products')); 
+        $produk = Produk::all();
+        return view('frontend.index', compact('produk')); 
     }
 
     public function show($id)
     {
         $produk = Produk::find($id);
-        return view('frontend.product-detail', compact('product'));
+        return view('frontend.product-detail', compact('produk'));
     }
 
     public function addToCart($id)

@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
     <meta charset="utf-8" />
-    <title>LARALUX | @yield('judul-halaman')</title>
+    <title>LARALUX ADMIN | @yield('judul-halaman')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
@@ -64,7 +64,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="images/laralux2.png" alt="logo" />
+                    <h3>LARALUX ADMIN</h3>
                 </a>
             </div>
             <form class="search-form search-form-header" role="form" action="index.html">
@@ -165,6 +165,24 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="{{ url('member') }}">
                             <i class="icon-user"></i>
                             <span class="title">Member</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('laporansatu') }}">
+                            <i class="icon-user"></i>
+                            <span class="title">Laporan Pertama</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('laporandua') }}">
+                            <i class="icon-user"></i>
+                            <span class="title">Laporan Kedua</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('laporantiga') }}">
+                            <i class="icon-user"></i>
+                            <span class="title">Laporan Ketiga</span>
                         </a>
                     </li>
                 </ul>

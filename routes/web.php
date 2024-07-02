@@ -5,6 +5,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('produk', ProdukController::class);
     Route::resource('transaksi', TransaksiController::class);
     Route::get('member', [UserController::class, 'members']);
+    Route::get('laporansatu', [LaporanController::class, 'topThreeUserTotalTransaction']);
+    Route::get('laporandua', [LaporanController::class, 'topThreeProductHotelReserved']);
+    Route::get('laporantiga', [LaporanController::class, 'topThreeUserAverageTransaction']);
 
     // Cart routes
     Route::get('laralux/user/cart', function () {
