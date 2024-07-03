@@ -31,6 +31,7 @@ class FrontEndController extends Controller
             $cart[$id] = [
             'id' => $id,
             'nama' => $produk->nama,
+            'produk_id' => $produk->id,
             'jumlah' => 1,
             'harga' => $produk->harga,
             'gambar' => $produk->gambar,

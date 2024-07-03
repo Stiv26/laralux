@@ -15,6 +15,7 @@
                 @endif
             </span>
         </a>
+        My Point: {{ Auth::user() -> memberpoint }}
     </td><br><br>
 </th>
 

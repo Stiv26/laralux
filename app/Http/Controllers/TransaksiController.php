@@ -38,15 +38,16 @@ class TransaksiController extends Controller
             'total' => 'required|numeric',
             'total_tanpa_pajak' => 'required|numeric',
             'products' => 'required|array',
+            'products.*.product_id' => 'required|exists:produks,id',
             'products.*.type' => 'required|string',
-            'products.*.quantity' => 'required|numeric',
+            'products.*.harga' => 'required|numeric',
             'products.*.price' => 'required|numeric',
         ]);
 
         $user = Auth::user();
         $total = $request->input('total');
         $total_tanpa_pajak = $request->input('total_tanpa_pajak');
-        $usePoints = $request->input('use_points', false); 
+        $usePoints = $request->input('use_points', false);
 
         if ($usePoints && $user->memberpoint > 0 && $total_tanpa_pajak >= 100000) 
         {
@@ -57,14 +58,22 @@ class TransaksiController extends Controller
         }
 
         $data = new Transaksi();
+        $data->user_id = Auth::id();
         $data->user_id = $user->id;
         $data->waktu_transaksi = now();
         $data->total = $total;
         $data->total_tanpa_pajak = $total_tanpa_pajak;
-
         $data->save();
 
-        $this->updateMemberPoints($user, $request->input('products'));
+        $products = $request->input('products');
+        foreach ($products as $product) {
+            $data->produks()->attach($product['product_id'], [
+                'quantity' => $product['quantity'],
+                'subtotal' => $product['quantity'] * $product['harga'],
+            ]);
+        }
+
+        $this->updateMemberPoints($user, $products);
 
         return redirect()->route('produk.index')->with('status', 'Transaksi Berhasil');
     }
@@ -72,7 +81,7 @@ class TransaksiController extends Controller
     private function updateMemberPoints(User $user, array $products)
     {
         $points = 0;
-    
+
         foreach ($products as $product) {
             if (in_array($product['type'], ['deluxe', 'superior', 'suite'])) {
                 $points += 5 * $product['quantity'];
@@ -80,7 +89,7 @@ class TransaksiController extends Controller
                 $points += floor(($product['price'] * $product['quantity']) / 300000);
             }
         }
-    
+
         $user->memberpoint += $points;
         $user->save();
     }
