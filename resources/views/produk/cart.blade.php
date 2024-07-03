@@ -43,7 +43,7 @@
             </tbody>
         </table>
         <div>
-            <a href="{{ route('cart.checkout') }}" class="btn btn-primary">Checkout</a>
+                <a href="{{ route('cart.checkout') }}" class="btn btn-primary">Checkout</a>
         </div>
     @else
         <p>Keranjang Anda kosong</p>

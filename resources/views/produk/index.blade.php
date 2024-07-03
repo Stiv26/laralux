@@ -29,7 +29,9 @@
                 <th>Ubah</th>
                 <th>Hapus</th>
             @endcan
+            @can('pembeli-permission', Auth::user())
             <th>Transaksi</th>
+            @endcan
         </tr>
     </thead>
     <tbody> 
@@ -49,8 +51,10 @@
                     </form>
                 </td>
             @endcan
-            <td><a class="btn" href="{{ route('produk.addCart', $item->id) }}"><i class="fa fa-shopping-cart"></i> Tambahkan ke Keranjang</a></td>
-        </tr>
+            @can('pembeli-permission', Auth::user())
+                <td><a class="btn" href="{{ route('produk.addCart', $item->id) }}"><i class="fa fa-shopping-cart"></i> Tambahkan ke Keranjang</a></td>
+            @endcan
+            </tr>
     @endforeach
     </tbody>
 </table>    

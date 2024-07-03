@@ -57,12 +57,7 @@ class TransaksiController extends Controller
         }
 
         $data = new Transaksi();
-<<<<<<< HEAD
-        $data->user_id = Auth::id(); 
-        $user = Auth::user();
-=======
         $data->user_id = $user->id;
->>>>>>> 40f8a8954588075c45ab3fb0448be8780416caff
         $data->waktu_transaksi = now();
         $data->total = $total;
         $data->total_tanpa_pajak = $total_tanpa_pajak;
@@ -73,14 +68,14 @@ class TransaksiController extends Controller
 
         return redirect()->route('produk.index')->with('status', 'Transaksi Berhasil');
     }
-
+    
     private function updateMemberPoints(User $user, array $products)
     {
         $points = 0;
     
         foreach ($products as $product) {
             if (in_array($product['type'], ['deluxe', 'superior', 'suite'])) {
-                $points = 5 * $product['quantity'];
+                $points += 5 * $product['quantity'];
             } else {
                 $points += floor(($product['price'] * $product['quantity']) / 300000);
             }
@@ -89,6 +84,7 @@ class TransaksiController extends Controller
         $user->memberpoint += $points;
         $user->save();
     }
+    
     
 
     /**
