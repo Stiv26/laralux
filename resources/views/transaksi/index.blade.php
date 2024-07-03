@@ -38,8 +38,8 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        @if ($d -> produk)
-                                            @foreach ($d -> $produks as $p)
+                                        @if ($d -> produks)
+                                            @foreach ($d -> produks as $p)
                                             <div class="card mb-4 box-shadow"> 
                                                 <img class="card-img-top">
                                                 <div class="card-body">
@@ -51,6 +51,10 @@
                                             </div>
                                             @endforeach
                                         @endif
+                                        <br>
+                                        <br>
+                                        <p class="card-text">Total : {{$d->total}} </p>
+                                        <p class="card-text">Total Tanpa Pajak : {{$d->total_tanpa_pajak}} </p>
                                     </div>
                                 </div>
                             </div>

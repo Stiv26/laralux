@@ -41,6 +41,7 @@ class TransaksiController extends Controller
 
         $data = new Transaksi();
         $data->user_id = Auth::id(); 
+        $user = Auth::user();
         $data->waktu_transaksi = now();
         $data->total = $request->input('total');
         $data->total_tanpa_pajak = $request->input('total_tanpa_pajak');
