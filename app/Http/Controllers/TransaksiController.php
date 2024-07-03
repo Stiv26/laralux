@@ -37,19 +37,59 @@ class TransaksiController extends Controller
         $request->validate([
             'total' => 'required|numeric',
             'total_tanpa_pajak' => 'required|numeric',
+            'products' => 'required|array',
+            'products.*.type' => 'required|string',
+            'products.*.quantity' => 'required|numeric',
+            'products.*.price' => 'required|numeric',
         ]);
 
+        $user = Auth::user();
+        $total = $request->input('total');
+        $total_tanpa_pajak = $request->input('total_tanpa_pajak');
+        $usePoints = $request->input('use_points', false); 
+
+        if ($usePoints && $user->memberpoint > 0 && $total_tanpa_pajak >= 100000) 
+        {
+            $pointsToUse = min($user->memberpoint, floor($total_tanpa_pajak / 100000));
+            $user->memberpoint -= $pointsToUse;
+            $total -= $pointsToUse * 100000;
+            $total_tanpa_pajak -= $pointsToUse * 100000;
+        }
+
         $data = new Transaksi();
+<<<<<<< HEAD
         $data->user_id = Auth::id(); 
         $user = Auth::user();
+=======
+        $data->user_id = $user->id;
+>>>>>>> 40f8a8954588075c45ab3fb0448be8780416caff
         $data->waktu_transaksi = now();
-        $data->total = $request->input('total');
-        $data->total_tanpa_pajak = $request->input('total_tanpa_pajak');
+        $data->total = $total;
+        $data->total_tanpa_pajak = $total_tanpa_pajak;
 
         $data->save();
 
-        return redirect()->route('produk.index')->with('status', 'Transaksi Berhasil');;
+        $this->updateMemberPoints($user, $request->input('products'));
+
+        return redirect()->route('produk.index')->with('status', 'Transaksi Berhasil');
     }
+
+    private function updateMemberPoints(User $user, array $products)
+    {
+        $points = 0;
+    
+        foreach ($products as $product) {
+            if (in_array($product['type'], ['deluxe', 'superior', 'suite'])) {
+                $points = 5 * $product['quantity'];
+            } else {
+                $points += floor(($product['price'] * $product['quantity']) / 300000);
+            }
+        }
+    
+        $user->memberpoint += $points;
+        $user->save();
+    }
+    
 
     /**
      * Display the specified resource.
