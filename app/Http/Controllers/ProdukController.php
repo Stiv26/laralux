@@ -155,9 +155,15 @@ class ProdukController extends Controller
         $product = Produk::find($id);
 
         if (isset($cart[$id])) {
+<<<<<<< HEAD
             $cart[$id]['jumlah']++;
             session()->put('cart', $cart);
             return redirect()->route('cart')->with('status', 'Jumlah produk ditambah');
+=======
+                $cart[$id]['jumlah']++;
+                session()->put('cart', $cart);
+                return redirect()->route('cart')->with('status', 'Jumlah produk ditambah');
+>>>>>>> d448b1d572593fc2ea7d45a2c1684e0c8b73ef58
         }
 
         return redirect()->route('cart')->with('status', 'Produk tidak ditemukan di keranjang');
