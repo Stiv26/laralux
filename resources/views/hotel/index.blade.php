@@ -10,7 +10,7 @@
     <table class = 'table'>
         <thead>
             <tr>
-                <th>Nama</th>
+                <th>Nama</th> 
                 <th>Alamat</th>
                 <th>Nomor Telepon</th>
                 <th>Email</th>

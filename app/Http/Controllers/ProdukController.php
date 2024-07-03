@@ -187,11 +187,13 @@ class ProdukController extends Controller
 
         // Calculate total amount
         $totalAmount = 0;
+        $totalAmountWithTax = 0;
         foreach ($cart as $details) {
             $totalAmount += $details['harga'] * $details['jumlah'];
+            $totalAmountWithTax += $details['harga'] * $details['jumlah'] + 11 / 100 * $details['harga'] * $details['jumlah'];
         }
     
-        return view('produk.checkout', compact('cart', 'totalAmount'));
+        return view('produk.checkout', compact('cart', 'totalAmount', 'totalAmountWithTax'));
     }
 
     // Method to handle order placement

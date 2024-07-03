@@ -17,7 +17,7 @@
         <input name="nomortelpon" type="text" class="form-control" id="nomortelpon"
             placeholder="Masukan nomor">
     </div>
-    <div class="form-group">
+    <div class="form-group"> 
         <label for="email">Email</label>
         <input name="email" type="text" class="form-control" id="nomortelpon"
             placeholder="Masukan email">
