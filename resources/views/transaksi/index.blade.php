@@ -51,8 +51,6 @@
                                             </div>
                                             @endforeach
                                         @endif
-                                        <br>
-                                        <br>
                                         <p class="card-text">Total : {{$d->total}} </p>
                                         <p class="card-text">Total Tanpa Pajak : {{$d->total_tanpa_pajak}} </p>
                                     </div>
