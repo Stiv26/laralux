@@ -26,6 +26,7 @@
             <th>Nama Hotel</th>
             <th>Tipe Produk</th>
             <th>Harga</th>
+            <th>Lihat Detail</th>
             @can('owner-permission', Auth::user())
                 <th>Ubah</th>
                 <th>Hapus</th>
@@ -42,6 +43,27 @@
             <td>{{ $item->hotel->nama }}</td>
             <td>{{ $item->tipeProduk->nama }}</td>
             <td>{{ $item->harga }}</td>
+            <td>
+                <a class="btn btn-success" data-toggle="modal" href="#lihat-{{ $item->id }}">Lihat Detail</a>
+                {{-- <div class="modal fade" id="lihat-{{ $item->id }}" tabindex="-1" role="basic"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true"></button>
+                                <h4 class="modal-title">Lihat Hotel</h4>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{ $item->gambar }}" alt="" style="width:90%;">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+            </td>
             @can('owner-permission', Auth::user())
                 <td><a class="btn btn-warning" href="{{ route('produk.edit', $item->id) }}">Ubah</a></td>
                 <td>

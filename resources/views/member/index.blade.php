@@ -14,7 +14,6 @@
                 <th>Poin Member</th>
                 @can('owner-permission', Auth::user())
                     <th>Ubah</th>
-                    <th>Hapus</th>
                 @endcan
             </tr>
         </thead>
@@ -24,16 +23,8 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->memberpoint }}</td>
-                        @can('owner-permission', Auth::user())
+                    @can('owner-permission', Auth::user())
                         <td><a class="btn btn-warning" href="{{ route('member.edit', $item->id) }}">Ubah</a></td>
-                        <td>
-                            <form method="POST" action="{{ route('member.destroy', $item->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" value="Hapus" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete member')">
-                            </form>
-                        </td>
                     @endcan
                 </tr>
             @endforeach
