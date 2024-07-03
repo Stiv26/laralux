@@ -24,6 +24,7 @@
                         <td>{{ $details['harga'] }}</td>
                         <td>{{ $details['harga'] * $details['jumlah'] * 1.11 }}</td>
                         <td>{{ $details['harga'] * $details['jumlah'] }}</td>
+                        
                         <input type="hidden" name="products[{{ $id }}][product_id]" value="{{ $id }}">
                         <input type="hidden" name="products[{{ $id }}][type]" value="{{ $details['type'] ?? 'unknown' }}">
                         <input type="hidden" name="products[{{ $id }}][quantity]" value="{{ $details['jumlah'] }}">

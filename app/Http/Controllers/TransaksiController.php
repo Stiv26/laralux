@@ -49,8 +49,7 @@ class TransaksiController extends Controller
         $total_tanpa_pajak = $request->input('total_tanpa_pajak');
         $usePoints = $request->input('use_points', false);
 
-        if ($usePoints && $user->memberpoint > 0 && $total_tanpa_pajak >= 100000) 
-        {
+        if ($usePoints && $user->memberpoint > 0 && $total_tanpa_pajak >= 100000) {
             $pointsToUse = min($user->memberpoint, floor($total_tanpa_pajak / 100000));
             $user->memberpoint -= $pointsToUse;
             $total -= $pointsToUse * 100000;
@@ -70,6 +69,8 @@ class TransaksiController extends Controller
             $data->produks()->attach($product['product_id'], [
                 'quantity' => $product['quantity'],
                 'subtotal' => $product['quantity'] * $product['harga'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 
@@ -77,7 +78,7 @@ class TransaksiController extends Controller
 
         return redirect()->route('produk.index')->with('status', 'Transaksi Berhasil');
     }
-    
+
     private function updateMemberPoints(User $user, array $products)
     {
         $points = 0;
@@ -93,8 +94,8 @@ class TransaksiController extends Controller
         $user->memberpoint += $points;
         $user->save();
     }
-    
-    
+
+
 
     /**
      * Display the specified resource.

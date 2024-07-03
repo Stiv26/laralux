@@ -45,7 +45,7 @@
             <td>{{ $item->harga }}</td>
             <td>
                 <a class="btn btn-success" data-toggle="modal" href="#lihat-{{ $item->id }}">Lihat Detail</a>
-                {{-- <div class="modal fade" id="lihat-{{ $item->id }}" tabindex="-1" role="basic"
+                <div class="modal fade" id="lihat-{{ $item->id }}" tabindex="-1" role="basic"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -55,14 +55,20 @@
                                 <h4 class="modal-title">Lihat Hotel</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="{{ $item->gambar }}" alt="" style="width:90%;">
+                                <img src="{{ $item->hotel->gambar }}" alt="" style="width:90%;">
+                                <p class="card-text">Hotel : {{ $item->hotel->nama }} </p>
+                                <p class="card-text">Alamat : {{ $item->hotel->alamat }}</p>
+                                <p class="card-text">Rating : {{ $item->hotel->rating }}</p>
+                                <p class="card-text">Tipe : {{ $item->tipeproduk->nama }}</p>
+                                <p class="card-text">Harga : {{ $item->harga }}</p>
+                                <p class="card-text">Email : {{ $item->hotel->email }}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </td>
             @can('owner-permission', Auth::user())
                 <td><a class="btn btn-warning" href="{{ route('produk.edit', $item->id) }}">Ubah</a></td>
