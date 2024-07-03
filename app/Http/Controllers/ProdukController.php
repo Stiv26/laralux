@@ -155,13 +155,9 @@ class ProdukController extends Controller
         $product = Produk::find($id);
 
         if (isset($cart[$id])) {
-            if ($cart[$id]['jumlah'] < $product->available_room) {
                 $cart[$id]['jumlah']++;
                 session()->put('cart', $cart);
                 return redirect()->route('cart')->with('status', 'Jumlah produk ditambah');
-            } else {
-                return redirect()->back()->with('error', 'Jumlah pemesanan melebihi total kamar yang tersedia');
-            }
         }
 
         return redirect()->route('cart')->with('status', 'Produk tidak ditemukan di keranjang');
