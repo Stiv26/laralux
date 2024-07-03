@@ -24,6 +24,9 @@
                         <td>{{ $details['harga'] }}</td>
                         <td>{{ $details['harga'] * $details['jumlah'] * 1.11 }}</td>
                         <td>{{ $details['harga'] * $details['jumlah'] }}</td>
+                        <input type="hidden" name="products[{{ $id }}][type]" value="{{ $details['type'] ?? 'unknown' }}">
+                        <input type="hidden" name="products[{{ $id }}][quantity]" value="{{ $details['jumlah'] }}">
+                        <input type="hidden" name="products[{{ $id }}][price]" value="{{ $details['harga'] }}">
                     </tr>
                 @endforeach
             </tbody>
@@ -31,11 +34,15 @@
         <div>
             <h3>Total Amount: IDR {{ $totalAmount }}</h3>
             <h3>Total Amount with TAX: IDR {{ $totalAmountWithTax }}</h3>
-                <input type="hidden" name="total" value="{{ $totalAmountWithTax }}">
-                <input type="hidden" name="total_tanpa_pajak" value="{{ $totalAmount }}">
-                <br>
-                <button type="submit" class="btn btn-success">Place Order</button>
+            <input type="hidden" name="total" value="{{ $totalAmountWithTax }}">
+            <input type="hidden" name="total_tanpa_pajak" value="{{ $totalAmount }}">
+            <div class="form-group">
+                <label for="use_points">Use Member Points</label>
+                <input type="checkbox" name="use_points" id="use_points">
             </div>
+            <br>
+            <button type="submit" class="btn btn-success">Place Order</button>
+        </div>
         </form>
     @else
         <p>Keranjang Anda kosong</p>
